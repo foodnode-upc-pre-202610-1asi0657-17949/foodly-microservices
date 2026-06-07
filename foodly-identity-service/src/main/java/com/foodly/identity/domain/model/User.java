@@ -10,9 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Entidad JPA que representa a un usuario registrado en la plataforma Foodly.
- */
 @Entity
 @Table(
     name = "users",

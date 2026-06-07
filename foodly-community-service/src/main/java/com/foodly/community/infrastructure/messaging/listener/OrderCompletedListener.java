@@ -24,7 +24,6 @@ public class OrderCompletedListener implements MessageListener {
 
     private final ObjectMapper objectMapper;
 
-    // En Jakarta EE los MDB requieren un constructor vacío para que el contenedor lo instancie
     public OrderCompletedListener() {
         this.objectMapper = new ObjectMapper()
                 .registerModule(new JavaTimeModule())

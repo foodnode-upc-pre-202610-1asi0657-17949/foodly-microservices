@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@ApplicationScoped // Manejado de forma segura por el contenedor CDI de WildFly
+@ApplicationScoped
 public class JwtProvider {
 
     private static final Logger log = LoggerFactory.getLogger(JwtProvider.class);
@@ -27,7 +27,6 @@ public class JwtProvider {
     public static final String CLAIM_EMAIL = "email";
     public static final String CLAIM_ROLES = "roles";
 
-    // Constantes de configuración desacopladas de Spring @Value
     private final String secretKey = "TuClaveSecretaSuperLargaYSeguraParaFirmarLosTokensJWTDeFoodly123!";
     private final String issuer = "foodly-identity-service";
     private final long expirationMinutes = 60;

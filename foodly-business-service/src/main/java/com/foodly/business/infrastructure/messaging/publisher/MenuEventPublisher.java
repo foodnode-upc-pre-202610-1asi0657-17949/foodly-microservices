@@ -15,7 +15,7 @@ import jakarta.jms.JMSContext;
 import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 
-@ApplicationScoped // Gestionado por el contenedor CDI de WildFly
+@ApplicationScoped
 public class MenuEventPublisher {
 
     private static final Logger log = LoggerFactory.getLogger(MenuEventPublisher.class);
@@ -25,7 +25,7 @@ public class MenuEventPublisher {
     private Queue queue;
 
     @Inject
-    private JMSContext jmsContext; // Equivalente nativo a JmsTemplate de Spring
+    private JMSContext jmsContext;
 
     private final ObjectMapper objectMapper;
 

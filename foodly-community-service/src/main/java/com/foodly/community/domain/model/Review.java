@@ -18,7 +18,7 @@ public class Review {
     private String customerUsername;
 
     @Column(name = "rating", nullable = false)
-    private Integer rating; // 1 to 5
+    private Integer rating;
 
     @Column(name = "comment", length = 1000)
     private String comment;

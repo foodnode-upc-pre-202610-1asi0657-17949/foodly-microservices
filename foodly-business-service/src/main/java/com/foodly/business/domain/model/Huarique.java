@@ -12,7 +12,6 @@ public class Huarique {
         this.menu = new Menu();
     }
 
-    // Constructor completo útil para reconstruir desde la BD
     public Huarique(String id, String name, String address, String h3Index, Menu menu) {
         this.id = id;
         this.name = name;
