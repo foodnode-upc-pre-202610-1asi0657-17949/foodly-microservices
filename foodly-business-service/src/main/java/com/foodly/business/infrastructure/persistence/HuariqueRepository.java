@@ -49,7 +49,7 @@ public class HuariqueRepository {
                 return Optional.of(mapToEntity(doc));
             }
         } catch (IllegalArgumentException e) {
-            // ID inválido
+
         }
         return Optional.empty();
     }

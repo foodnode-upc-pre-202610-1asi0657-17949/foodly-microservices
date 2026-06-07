@@ -33,12 +33,10 @@ public class JwtValidationFilter implements ContainerRequestFilter {
         String path = requestContext.getUriInfo().getPath();
         String method = requestContext.getMethod();
 
-        // Bypass para recursos del sistema (Swagger/OpenAPI si los tuvieras)
         if (path.startsWith("openapi") || path.startsWith("swagger")) {
             return;
         }
 
-        // REGLA ESPECIAL COMUNIDAD: Permitir GET /huariques/{id}/reviews públicamente sin token
         if (path.contains("huariques") && path.contains("reviews") && "GET".equalsIgnoreCase(method)) {
             return;
         }
@@ -64,7 +62,6 @@ public class JwtValidationFilter implements ContainerRequestFilter {
             String username = claims.getSubject();
             List<String> roles = claims.get("roles", List.class);
 
-            // Validación de Rol Empresarial (Exige ser CLIENT para comentar)
             if (roles == null || (!roles.contains("CLIENT") && !roles.contains("CUSTOMER"))) {
                 requestContext.abortWith(Response
                         .status(Response.Status.FORBIDDEN)
@@ -74,7 +71,6 @@ public class JwtValidationFilter implements ContainerRequestFilter {
                 return;
             }
 
-            // Inyectamos los atributos en el request
             servletRequest.setAttribute("username", username);
             servletRequest.setAttribute("roles", roles);
 

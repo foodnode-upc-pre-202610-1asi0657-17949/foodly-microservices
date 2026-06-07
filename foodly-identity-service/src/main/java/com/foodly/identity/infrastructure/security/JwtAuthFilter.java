@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 
-@Provider // Registra de manera global este filtro en el motor JAX-RS de WildFly
+@Provider
 public class JwtAuthFilter implements ContainerRequestFilter {
 
     private static final Logger log = LoggerFactory.getLogger(JwtAuthFilter.class);
@@ -25,14 +25,13 @@ public class JwtAuthFilter implements ContainerRequestFilter {
     private JwtProvider jwtProvider;
 
     @Context
-    private HttpServletRequest servletRequest; // Inyección nativa del contexto HTTP
+    private HttpServletRequest servletRequest;
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String path = requestContext.getUriInfo().getPath();
 
-        // Bypass para rutas públicas (Autenticación y recursos del sistema)
-        if (path.startsWith("auth/") || path.startsWith("openapi") || path.startsWith("swagger")) {
+        if (path.contains("/auth/") || path.startsWith("openapi") || path.startsWith("swagger")) {
             return;
         }
 
@@ -55,12 +54,10 @@ public class JwtAuthFilter implements ContainerRequestFilter {
             return;
         }
 
-        // Extracción de claims desde el token validado
         String userId = jwtProvider.getUserId(token);
         String email = jwtProvider.getEmail(token);
         List<String> roles = jwtProvider.getRoles(token);
 
-        // Adjuntar atributos al request para que UserController los lea con @Context
         servletRequest.setAttribute("userId", userId);
         servletRequest.setAttribute("email", email);
         servletRequest.setAttribute("roles", roles);

@@ -6,10 +6,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
-@Stateless // WildFly maneja automáticamente los bloqueos y confirmaciones de datos (ACID)
+@Stateless
 public class ReviewRepository {
 
-    @PersistenceContext(unitName = "FoodlyCommunityPU") // Se conecta al persistence.xml de este módulo
+    @PersistenceContext(unitName = "FoodlyCommunityPU")
     private EntityManager em;
 
     public List<Review> findByHuariqueId(String huariqueId) {

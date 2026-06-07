@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ApplicationScoped // Gestionado por el contenedor CDI de WildFly
+@ApplicationScoped
 public class CommunityService {
 
     @Inject
@@ -29,7 +29,7 @@ public class CommunityService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional // Transaccionalidad JTA nativa de WildFly
+    @Transactional
     public ReviewResponseDto addReview(String huariqueId, String customerUsername, ReviewRequestDto request) {
         Review review = new Review(huariqueId, customerUsername, request.getRating(), request.getComment());
         reviewRepository.save(review);
