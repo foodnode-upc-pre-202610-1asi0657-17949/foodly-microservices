@@ -1,0 +1,12 @@
+com\foodly\business\domain\model\Huarique.class
+com\foodly\business\presentation\rest\HuariqueController.class
+com\foodly\business\RestApplication.class
+com\foodly\business\domain\model\Menu.class
+com\foodly\business\application\dto\HuariqueResponseDto.class
+com\foodly\business\application\dto\MenuUpdatedEventDto.class
+com\foodly\business\application\dto\MenuUpdateDto.class
+com\foodly\business\domain\model\Product.class
+com\foodly\business\infrastructure\persistence\HuariqueRepository.class
+com\foodly\business\infrastructure\security\JwtValidationFilter.class
+com\foodly\business\infrastructure\messaging\publisher\MenuEventPublisher.class
+com\foodly\business\application\service\BusinessService.class

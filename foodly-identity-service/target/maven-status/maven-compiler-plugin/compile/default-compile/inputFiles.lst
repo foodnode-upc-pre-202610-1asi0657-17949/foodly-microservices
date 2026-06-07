@@ -1,20 +1,24 @@
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\dto\AuthResponseDto.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\dto\LoginRequestDto.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\dto\RegisterRequestDto.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\dto\UserCreatedEventDto.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\dto\UserProfileDto.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\exception\AuthenticationException.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\exception\UserAlreadyExistsException.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\exception\UserNotFoundException.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\service\AuthService.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\application\service\AuthServiceImpl.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\domain\model\User.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\domain\model\UserRole.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\FoodlyIdentityServiceApplication.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\infrastructure\messaging\UserEventPublisher.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\infrastructure\persistence\UserRepository.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\infrastructure\security\JwtAuthFilter.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\infrastructure\security\JwtProvider.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\presentation\rest\AuthController.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\presentation\rest\GlobalExceptionHandler.java
-C:\Users\Jasmin\Desktop\entregafundamentos\Microservicio1\FoodlyIdentityService\src\main\java\com\FoodlyIdentityService\presentation\rest\UserController.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\dto\AuthResponseDto.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\dto\LoginRequestDto.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\dto\RegisterRequestDto.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\dto\UserCreatedEventDto.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\dto\UserProfileDto.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\exception\AuthenticationException.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\exception\UserAlreadyExistsException.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\exception\UserNotFoundException.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\service\AuthService.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\application\service\AuthServiceImpl.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\domain\model\User.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\domain\model\UserRole.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\infrastructure\messaging\UserEventPublisher.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\infrastructure\persistence\UserRepository.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\infrastructure\security\JwtAuthFilter.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\infrastructure\security\JwtProvider.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\AuthController.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\AuthenticationExceptionMapper.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\ConstraintViolationExceptionMapper.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\GenericExceptionMapper.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\UserAlreadyExistsExceptionMapper.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\UserController.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\presentation\rest\UserNotFoundExceptionMapper.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-identity-service\src\main\java\com\foodly\identity\RestApplication.java
