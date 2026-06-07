@@ -15,7 +15,7 @@ import jakarta.jms.JMSContext;
 import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 
-@ApplicationScoped // CDI maneja este publicador de eventos asíncronos
+@ApplicationScoped
 public class UserEventPublisher {
 
     private static final Logger log = LoggerFactory.getLogger(UserEventPublisher.class);
@@ -23,12 +23,11 @@ public class UserEventPublisher {
     public static final String EVENT_TYPE_USER_CREATED  = "USER_CREATED";
     public static final String EVENT_TYPE_USER_UPDATED  = "USER_UPDATED";
 
-    // WildFly inyectará la cola física configurada en el servidor mediante su nombre JNDI
     @Resource(lookup = "java:/jms/queue/IdentityUsersQueue")
     private Queue queue;
 
     @Inject
-    private JMSContext jmsContext; // Equivalente nativo a JmsTemplate de Spring Cloud
+    private JMSContext jmsContext;
 
     private final ObjectMapper objectMapper;
 
@@ -53,7 +52,6 @@ public class UserEventPublisher {
             log.info("[UserEventPublisher] Publicando evento '{}' para userId={}", eventType, event.getUserId());
             log.debug("[UserEventPublisher] Payload JSON: {}", jsonPayload);
 
-            // Uso nativo de la API JMS 3.0 para enviar mensajes estructurados
             TextMessage message = jmsContext.createTextMessage(jsonPayload);
             message.setStringProperty("eventType", eventType);
             message.setStringProperty("sourceService", "foodly-identity-service");

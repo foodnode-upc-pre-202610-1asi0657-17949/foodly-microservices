@@ -16,7 +16,6 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
     public Response toResponse(ConstraintViolationException exception) {
         Map<String, String> errors = new HashMap<>();
 
-        // Extraemos de forma nativa qué campo falló y su mensaje de error personalizado
         exception.getConstraintViolations().forEach(violation -> {
             String propertyPath = violation.getPropertyPath().toString();
             String fieldName = propertyPath.substring(propertyPath.lastIndexOf('.') + 1);
