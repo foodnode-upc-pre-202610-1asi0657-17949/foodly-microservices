@@ -6,13 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FoodlyCommunityService" />
+        <module name="foodlyIdentityService" />
         <module name="FoodlyIdentityService" />
+        <module name="foodlyCommunityService" />
+        <module name="FoodlyBusinessService" />
+        <module name="foodlyBusinessService" />
+        <module name="FoodlyCommunityService" />
         <module name="foodly-radar-service" />
         <module name="foodly-shared-core" />
-        <module name="FoodlyBusinessService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="foodly-microservices" target="17" />
+      <module name="FoodlyBusinessService" target="17" />
+      <module name="FoodlyCommunityService" target="17" />
+      <module name="FoodlyIdentityService" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
