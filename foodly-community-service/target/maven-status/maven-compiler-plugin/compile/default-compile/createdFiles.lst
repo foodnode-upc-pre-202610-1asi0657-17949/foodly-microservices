@@ -1,0 +1,11 @@
+com\foodly\community\application\service\CommunityService.class
+com\foodly\community\infrastructure\persistence\FavoriteHuariqueRepository.class
+com\foodly\community\application\dto\ReviewResponseDto.class
+com\foodly\community\infrastructure\security\JwtValidationFilter.class
+com\foodly\community\application\dto\ReviewRequestDto.class
+com\foodly\community\domain\model\FavoriteHuarique.class
+com\foodly\community\infrastructure\messaging\listener\OrderCompletedListener.class
+com\foodly\community\presentation\rest\CommunityController.class
+com\foodly\community\RestApplication.class
+com\foodly\community\infrastructure\persistence\ReviewRepository.class
+com\foodly\community\domain\model\Review.class
