@@ -9,6 +9,7 @@ public class Product {
     private String description;
     private Double price;
     private Boolean available;
+    private String imageUrl;
 
     public Product() {
         this.id = new ObjectId().toHexString();
@@ -28,4 +29,7 @@ public class Product {
 
     public Boolean getAvailable() { return available; }
     public void setAvailable(Boolean available) { this.available = available; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

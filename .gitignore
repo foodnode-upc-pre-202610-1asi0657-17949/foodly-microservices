@@ -1,6 +1,8 @@
 ﻿# Maven
-target/
+**/target/
 *.class
+*.war
+*.jar
 
 # IntelliJ
 .idea/

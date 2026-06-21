@@ -1,7 +1,10 @@
 package com.foodly.business.application.dto;
 
+import com.foodly.business.domain.model.DaySchedule;
 import com.foodly.business.domain.model.Huarique;
 import com.foodly.business.domain.model.Menu;
+
+import java.util.List;
 
 public class HuariqueResponseDto {
     private String id;
@@ -11,6 +14,13 @@ public class HuariqueResponseDto {
     private Double latitude;
     private Double longitude;
     private Menu menu;
+
+    private String cuisineType;
+    private String phone;
+    private String priceRange;
+    private Boolean isOpen;
+    private List<String> photos;
+    private List<DaySchedule> schedule;
 
     public HuariqueResponseDto() {}
 
@@ -22,6 +32,12 @@ public class HuariqueResponseDto {
         this.latitude = huarique.getLatitude();
         this.longitude = huarique.getLongitude();
         this.menu = huarique.getMenu();
+        this.cuisineType = huarique.getCuisineType();
+        this.phone = huarique.getPhone();
+        this.priceRange = huarique.getPriceRange();
+        this.isOpen = huarique.getIsOpen();
+        this.photos = huarique.getPhotos();
+        this.schedule = huarique.getSchedule();
     }
 
     public String getId() { return id; }
@@ -44,4 +60,22 @@ public class HuariqueResponseDto {
 
     public Menu getMenu() { return menu; }
     public void setMenu(Menu menu) { this.menu = menu; }
+
+    public String getCuisineType() { return cuisineType; }
+    public void setCuisineType(String cuisineType) { this.cuisineType = cuisineType; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public String getPriceRange() { return priceRange; }
+    public void setPriceRange(String priceRange) { this.priceRange = priceRange; }
+
+    public Boolean getIsOpen() { return isOpen; }
+    public void setIsOpen(Boolean isOpen) { this.isOpen = isOpen; }
+
+    public List<String> getPhotos() { return photos; }
+    public void setPhotos(List<String> photos) { this.photos = photos; }
+
+    public List<DaySchedule> getSchedule() { return schedule; }
+    public void setSchedule(List<DaySchedule> schedule) { this.schedule = schedule; }
 }

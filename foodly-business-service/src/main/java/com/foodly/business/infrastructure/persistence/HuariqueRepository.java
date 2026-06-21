@@ -1,5 +1,6 @@
 package com.foodly.business.infrastructure.persistence;
 
+import com.foodly.business.domain.model.DaySchedule;
 import com.foodly.business.domain.model.Huarique;
 import com.foodly.business.domain.model.Menu;
 import com.foodly.business.domain.model.Product;
@@ -22,15 +23,20 @@ import java.util.Optional;
 @ApplicationScoped
 public class HuariqueRepository {
 
+    private static final String DEFAULT_MONGO_URI =
+            "mongodb://foodly:f00dl1@ac-jynysjh-shard-00-00.hrszyjl.mongodb.net:27017,ac-jynysjh-shard-00-01.hrszyjl.mongodb.net:27017,ac-jynysjh-shard-00-02.hrszyjl.mongodb.net:27017/?ssl=true&replicaSet=atlas-qqsnnj-shard-0&authSource=admin&appName=Foodly";
+
     private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 
     @PostConstruct
     public void init() {
-        this.mongoClient = MongoClients.create(
-                "mongodb://foodly:f00dl1@ac-jynysjh-shard-00-00.hrszyjl.mongodb.net:27017,ac-jynysjh-shard-00-01.hrszyjl.mongodb.net:27017,ac-jynysjh-shard-00-02.hrszyjl.mongodb.net:27017/?ssl=true&replicaSet=atlas-qqsnnj-shard-0&authSource=admin&appName=Foodly"
-        );
+        String uri = System.getenv("MONGO_URI");
+        if (uri == null || uri.isBlank()) {
+            uri = DEFAULT_MONGO_URI;
+        }
+        this.mongoClient = MongoClients.create(uri);
         this.database = mongoClient.getDatabase("foodly_business");
         this.collection = database.getCollection("huariques");
     }
@@ -51,7 +57,15 @@ public class HuariqueRepository {
                 return Optional.of(mapToEntity(doc));
             }
         } catch (IllegalArgumentException e) {
+            // id con formato inválido para ObjectId -> no encontrado
+        }
+        return Optional.empty();
+    }
 
+    public Optional<Huarique> findByOwnerId(String ownerId) {
+        Document doc = collection.find(Filters.eq("ownerId", ownerId)).first();
+        if (doc != null) {
+            return Optional.of(mapToEntity(doc));
         }
         return Optional.empty();
     }
@@ -66,11 +80,28 @@ public class HuariqueRepository {
             doc.append("_id", new ObjectId(huarique.getId()));
         }
 
-        doc.append("name", huarique.getName())
+        doc.append("ownerId", huarique.getOwnerId())
+                .append("name", huarique.getName())
                 .append("address", huarique.getAddress())
                 .append("h3Index", huarique.getH3Index())
                 .append("latitude", huarique.getLatitude())
-                .append("longitude", huarique.getLongitude());
+                .append("longitude", huarique.getLongitude())
+                .append("cuisineType", huarique.getCuisineType())
+                .append("phone", huarique.getPhone())
+                .append("priceRange", huarique.getPriceRange())
+                .append("isOpen", huarique.getIsOpen())
+                .append("photos", huarique.getPhotos());
+
+        if (huarique.getSchedule() != null) {
+            List<Document> scheduleDocs = new ArrayList<>();
+            for (DaySchedule d : huarique.getSchedule()) {
+                scheduleDocs.add(new Document("day", d.getDay())
+                        .append("open", d.getOpen())
+                        .append("from", d.getFrom())
+                        .append("to", d.getTo()));
+            }
+            doc.append("schedule", scheduleDocs);
+        }
 
         if (huarique.getMenu() != null) {
             List<Document> productDocs = new ArrayList<>();
@@ -79,7 +110,8 @@ public class HuariqueRepository {
                         .append("name", p.getName())
                         .append("description", p.getDescription())
                         .append("price", p.getPrice())
-                        .append("available", p.getAvailable()));
+                        .append("available", p.getAvailable())
+                        .append("imageUrl", p.getImageUrl()));
             }
 
             Document menuDoc = new Document("categories", huarique.getMenu().getCategories())
@@ -96,11 +128,35 @@ public class HuariqueRepository {
     private Huarique mapToEntity(Document doc) {
         Huarique h = new Huarique();
         h.setId(doc.getObjectId("_id").toHexString());
+        h.setOwnerId(doc.getString("ownerId"));
         h.setName(doc.getString("name"));
         h.setAddress(doc.getString("address"));
         h.setH3Index(doc.getString("h3Index"));
         h.setLatitude(doc.getDouble("latitude"));
         h.setLongitude(doc.getDouble("longitude"));
+        h.setCuisineType(doc.getString("cuisineType"));
+        h.setPhone(doc.getString("phone"));
+        h.setPriceRange(doc.getString("priceRange"));
+
+        Boolean isOpen = doc.getBoolean("isOpen");
+        h.setIsOpen(isOpen != null ? isOpen : true);
+
+        List<String> photos = doc.getList("photos", String.class);
+        h.setPhotos(photos != null ? photos : new ArrayList<>());
+
+        List<Document> scheduleDocs = doc.getList("schedule", Document.class);
+        if (scheduleDocs != null) {
+            List<DaySchedule> schedule = new ArrayList<>();
+            for (Document sDoc : scheduleDocs) {
+                schedule.add(new DaySchedule(
+                        sDoc.getString("day"),
+                        sDoc.getBoolean("open"),
+                        sDoc.getString("from"),
+                        sDoc.getString("to")
+                ));
+            }
+            h.setSchedule(schedule);
+        }
 
         Document menuDoc = doc.get("menu", Document.class);
         if (menuDoc != null) {
@@ -117,6 +173,7 @@ public class HuariqueRepository {
                     p.setDescription(pDoc.getString("description"));
                     p.setPrice(pDoc.getDouble("price"));
                     p.setAvailable(pDoc.getBoolean("available"));
+                    p.setImageUrl(pDoc.getString("imageUrl"));
                     products.add(p);
                 }
                 menu.setProducts(products);
