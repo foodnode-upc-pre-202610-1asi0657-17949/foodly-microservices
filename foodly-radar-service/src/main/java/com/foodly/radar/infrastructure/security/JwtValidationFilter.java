@@ -18,16 +18,11 @@ import java.nio.charset.StandardCharsets;
 @Priority(Priorities.AUTHENTICATION)
 public class JwtValidationFilter implements ContainerRequestFilter {
 
-    private static final String SECRET_KEY = "TuLlaveSecretaSuperSeguraParaElEcosistemaFoodlyMeroMonorepo2026";
+    private static final String SECRET_KEY = "TuClaveSecretaSuperLargaYSeguraParaFirmarLosTokensJWTDeFoodly123!";
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         if (requestContext.getMethod().equalsIgnoreCase("OPTIONS")) {
-            return;
-        }
-
-        String path = requestContext.getUriInfo().getPath();
-        if (path.endsWith("/radar/status")) {
             return;
         }
 
@@ -49,7 +44,10 @@ public class JwtValidationFilter implements ContainerRequestFilter {
                     .parseSignedClaims(token)
                     .getPayload();
 
-            String email = claims.getSubject();
+            String userId = claims.getSubject();
+            String email = claims.get("email", String.class);
+
+            requestContext.setProperty("userId", userId);
             requestContext.setProperty("userEmail", email);
 
         } catch (Exception e) {
