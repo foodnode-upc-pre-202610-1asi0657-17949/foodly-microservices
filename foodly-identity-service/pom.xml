@@ -12,7 +12,8 @@
 	</parent>
 
 	<artifactId>foodlyIdentityService</artifactId>
-	<packaging>war</packaging> <name>Foodly - Identity &amp; Access Service</name>
+	<packaging>war</packaging>
+	<name>Foodly - Identity</name>
 
 	<dependencies>
 		<dependency>
