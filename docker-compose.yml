@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  redis-service:
+    image: redis:alpine
+    container_name: foodly
+    ports:
+      - "${DB_REDIS_PORT}:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - foodly-network
+
+  radar-service:
+    build: ./foodly-radar-service
+    container_name: foodly-radar-service
+    ports:
+      - "8081:${SERVER_PORT}"
+    environment:
+      - REDIS_HOST=${DB_REDIS_HOST}
+      - REDIS_PORT=${DB_REDIS_PORT}
+    depends_on:
+      - redis-service
+    networks:
+      - foodly-network
+
+networks:
+  foodly-network:
+    driver: bridge
+
+volumes:
+  redis_data:
