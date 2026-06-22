@@ -2,6 +2,7 @@ C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWA
 C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\application\dto\RadarSearchRequestDto.java
 C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\application\dto\RestaurantStatusEventDto.java
 C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\application\exception\InvalidCoordinatesException.java
+C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\application\service\GeoRadarService.java
 C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\application\service\GeoRadarServiceImpl.java
 C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\domain\model\GeoLocation.java
 C:\Users\sergi\OneDrive\Documentos\CICLO-7\FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE\PROYECTOS\foodly-microservices\foodly-radar-service\src\main\java\com\foodly\radar\domain\model\RadarCluster.java
