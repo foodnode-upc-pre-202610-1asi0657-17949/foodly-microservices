@@ -34,22 +34,16 @@ public class RestaurantEventListener implements MessageListener {
                 String jsonPayload = ((TextMessage) message).getText();
                 System.out.println("[RadarService JMS] Evento recibido desde Business: " + jsonPayload);
 
-                // 1. Deserializar el evento crudo que viene desde la cola a un DTO de negocio
                 NearbyRestaurantDto restaurantEvent = objectMapper.readValue(jsonPayload, NearbyRestaurantDto.class);
 
-                // 2. Validar que tenga coordenadas físicas válidas para el mapeo geoespacial
                 if (restaurantEvent.getLatitude() != null && restaurantEvent.getLongitude() != null) {
                     GeoLocation location = new GeoLocation(restaurantEvent.getLatitude(), restaurantEvent.getLongitude());
 
-                    // 3. Calcular matemáticamente su índice hexagonal H3 en caliente
                     String currentH3Index = h3RadarService.latLngToCell(location);
                     restaurantEvent.setH3Index(currentH3Index); // Inyectamos el índice calculado para el Front
 
-                    // Convertimos el DTO enriquecido a JSON string optimizado para el caché
                     String updatedRestaurantJson = objectMapper.writeValueAsString(restaurantEvent);
 
-                    // 4. Actualizar la celda en el Connection Pool de Redis
-                    // (Si el restaurante ya existía, limpia la anterior e inserta el estado fresco del menú)
                     redisRadarRepository.removeFromCell(currentH3Index, restaurantEvent.getId());
                     redisRadarRepository.saveToCell(currentH3Index, restaurantEvent.getId(), updatedRestaurantJson);
 
@@ -58,7 +52,6 @@ public class RestaurantEventListener implements MessageListener {
                 }
             }
         } catch (Exception e) {
-            // Logueamos el error de infraestructura de forma limpia en la consola negra de WildFly
             System.err.println("[RadarService JMS] Error crítico procesando evento de restaurante asíncrono: " + e.getMessage());
         }
     }

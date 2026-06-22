@@ -1,4 +1,4 @@
-﻿# Maven
+# Maven
 **/target/
 *.class
 *.war
@@ -14,3 +14,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Environment / Config
+.env
+*.env
