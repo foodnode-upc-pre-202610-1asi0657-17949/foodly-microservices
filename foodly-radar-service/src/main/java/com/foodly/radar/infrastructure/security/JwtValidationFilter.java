@@ -23,7 +23,6 @@ public class JwtValidationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
-        // Permitir opciones de CORS preflight sin validar token
         if (requestContext.getMethod().equalsIgnoreCase("OPTIONS")) {
             return;
         }
