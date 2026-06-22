@@ -13,7 +13,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 
 @Provider
 @Priority(Priorities.AUTHENTICATION)
@@ -24,6 +23,11 @@ public class JwtValidationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         if (requestContext.getMethod().equalsIgnoreCase("OPTIONS")) {
+            return;
+        }
+
+        String path = requestContext.getUriInfo().getPath();
+        if (path.endsWith("/radar/status")) {
             return;
         }
 
@@ -55,6 +59,7 @@ public class JwtValidationFilter implements ContainerRequestFilter {
 
     private void abortWithUnauthorized(ContainerRequestContext requestContext, String message) {
         requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .entity("{\"error\":\"" + message + "\"}")
                 .build());
     }
