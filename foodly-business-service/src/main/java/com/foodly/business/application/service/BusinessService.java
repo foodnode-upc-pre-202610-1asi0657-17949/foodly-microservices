@@ -7,7 +7,7 @@ import com.foodly.business.application.dto.MenuUpdateDto;
 import com.foodly.business.application.dto.MenuUpdatedEventDto;
 import com.foodly.business.domain.model.Huarique;
 import com.foodly.business.infrastructure.messaging.publisher.MenuEventPublisher;
-import com.foodly.business.infrastructure.persistence.HuariqueRepository;
+import com.foodly.business.infrastructure.persistence.MongoHuariqueRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -18,25 +18,25 @@ import java.util.stream.Collectors;
 @ApplicationScoped // Cambio clave para WildFly
 public class BusinessService {
     @Inject
-    private HuariqueRepository huariqueRepository;
+    private MongoHuariqueRepository mongoHuariqueRepository;
 
     @Inject
     private MenuEventPublisher menuEventPublisher;
 
     public List<HuariqueResponseDto> getAllHuariques() {
-        return huariqueRepository.findAll()
+        return mongoHuariqueRepository.findAll()
                 .stream()
                 .map(HuariqueResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     public Optional<HuariqueResponseDto> getHuariqueMenu(String huariqueId) {
-        return huariqueRepository.findById(huariqueId)
+        return mongoHuariqueRepository.findById(huariqueId)
                 .map(HuariqueResponseDto::new);
     }
 
     public Optional<HuariqueResponseDto> getHuariqueByOwner(String ownerId) {
-        return huariqueRepository.findByOwnerId(ownerId)
+        return mongoHuariqueRepository.findByOwnerId(ownerId)
                 .map(HuariqueResponseDto::new);
     }
 
@@ -45,7 +45,7 @@ public class BusinessService {
      * Si el dueño ya tiene un local, no se crea uno nuevo (evita duplicados).
      */
     public Optional<HuariqueResponseDto> createHuarique(String ownerId, HuariqueCreateDto createDto) {
-        if (huariqueRepository.findByOwnerId(ownerId).isPresent()) {
+        if (mongoHuariqueRepository.findByOwnerId(ownerId).isPresent()) {
             return Optional.empty();
         }
 
@@ -59,7 +59,7 @@ public class BusinessService {
         huarique.setLatitude(createDto.getLatitude());
         huarique.setLongitude(createDto.getLongitude());
 
-        Huarique saved = huariqueRepository.save(huarique);
+        Huarique saved = mongoHuariqueRepository.save(huarique);
         return Optional.of(new HuariqueResponseDto(saved));
     }
 
@@ -67,7 +67,7 @@ public class BusinessService {
      * Actualiza los datos de perfil (no el menú) del huarique del dueño autenticado.
      */
     public Optional<HuariqueResponseDto> updateProfile(String ownerId, HuariqueProfileUpdateDto updateDto) {
-        Optional<Huarique> huariqueOpt = huariqueRepository.findByOwnerId(ownerId);
+        Optional<Huarique> huariqueOpt = mongoHuariqueRepository.findByOwnerId(ownerId);
         if (huariqueOpt.isEmpty()) {
             return Optional.empty();
         }
@@ -84,12 +84,12 @@ public class BusinessService {
         if (updateDto.getPhotos() != null) huarique.setPhotos(updateDto.getPhotos());
         if (updateDto.getSchedule() != null) huarique.setSchedule(updateDto.getSchedule());
 
-        Huarique saved = huariqueRepository.save(huarique);
+        Huarique saved = mongoHuariqueRepository.save(huarique);
         return Optional.of(new HuariqueResponseDto(saved));
     }
 
     public boolean updateMenu(String huariqueId, MenuUpdateDto updateDto) {
-        Optional<Huarique> huariqueOpt = huariqueRepository.findById(huariqueId);
+        Optional<Huarique> huariqueOpt = mongoHuariqueRepository.findById(huariqueId);
 
         if (huariqueOpt.isEmpty()) {
             return false;
@@ -98,7 +98,7 @@ public class BusinessService {
         Huarique huarique = huariqueOpt.get();
         huarique.setMenu(updateDto.getMenu());
 
-        huariqueRepository.save(huarique);
+        mongoHuariqueRepository.save(huarique);
 
         int totalProducts = (updateDto.getMenu() != null && updateDto.getMenu().getProducts() != null)
                 ? updateDto.getMenu().getProducts().size() : 0;
