@@ -12,7 +12,8 @@
 	</parent>
 
 	<artifactId>foodlyCommunityService</artifactId>
-	<packaging>war</packaging> <name>Foodly - Community Service</name>
+	<packaging>war</packaging>
+	<name>Foodly - Community Service</name>
 
 	<dependencies>
 		<dependency>
